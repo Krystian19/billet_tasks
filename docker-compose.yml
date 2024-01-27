@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  billet.postgres:
+    container_name: billet_postgres 
+    networks:
+      - canary_net
+    image: postgres:14.1-alpine3.14
+    environment:
+      POSTGRES_PASSWORD: "pass"
+      POSTGRES_DB: "billet"
+    ports:
+      - 5432:5432
+
+  billet.api:
+    container_name: billet_api
+    networks:
+      - canary_net
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile.dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ./src:/app/src
+      - ./requirements.txt:/app/requirements.txt
+
+networks:
+  canary_net:
+    name: canary_net

@@ -1,0 +1,15 @@
+FROM python:3.11.3-alpine
+
+# ignore root user pip warning by default
+ENV PIP_ROOT_USER_ACTION=ignore
+
+RUN apk update
+# RUN apk add build-base
+# RUN apk add  make
+RUN apk add --no-cache bash
+
+WORKDIR /app
+COPY . /app
+
+EXPOSE 3000 
+CMD ./scripts/setup.sh
