@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from datetime import date 
+from datetime import datetime
 
 class HealthResponse(BaseModel):
     status: str
@@ -9,5 +9,5 @@ class UserFieldsSchema(BaseModel):
 
 class UserSchema(UserFieldsSchema):
     id: int
-    created_at: date
+    created_at: datetime
 

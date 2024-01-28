@@ -1,8 +1,10 @@
 from app.constants import TaskStatus
 from app.db.connection import Base, engine
+from app.db.seeds import initialize_table
 
 from sqlalchemy import (Column, Integer, String, DateTime, ForeignKey)
 from sqlalchemy.dialects.postgresql import ENUM as pgEnum
+from sqlalchemy import event
 from datetime import datetime as dt
 
 class User(Base):
@@ -28,5 +30,7 @@ class User2Task(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('users.id'))
     task_id = Column(Integer, ForeignKey('tasks.id'))
+
+event.listen(User.__table__, 'after_create', initialize_table)
 
 Base.metadata.create_all(engine)
