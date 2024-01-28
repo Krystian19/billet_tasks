@@ -16,6 +16,7 @@ INITIAL_DATA = {
         {
             'name': 'cortar el cesped',
             'desc': 'ha crecido demasiado',
+            'expires_at': '10-14-2024',
         },
     ],
     'users2tasks': [

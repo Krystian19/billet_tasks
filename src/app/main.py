@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from app.routers.users import router as users_router
 from app.routers.schemas import HealthResponse
+from app.routers.users import router as users_router
+from app.routers.tasks import router as tasks_router 
 
 app = FastAPI()
 origins = ["*"]
@@ -20,3 +21,4 @@ async def health():
     return HealthResponse(status="OK")
 
 app.include_router(users_router)
+app.include_router(tasks_router)
