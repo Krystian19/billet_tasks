@@ -1,8 +1,10 @@
+from app.constants import TaskStatus
+from app.env import DATABASE_URL
+
 from sqlalchemy import (Column, Integer, String, create_engine, DateTime, ForeignKey)
 from sqlalchemy.dialects.postgresql import ENUM as pgEnum
-from datetime import datetime as dt
 from sqlalchemy.orm import declarative_base
-from app.constants import DATABASE_URL, TaskStatus
+from datetime import datetime as dt
 
 engine = create_engine(DATABASE_URL, echo=True)
 Base = declarative_base()
