@@ -6,7 +6,36 @@ INITIAL_DATA = {
         {
             'username': 'Wilowayne De La Cruz'
         },
-    ]
+    ],
+    'tasks': [
+        {
+            'name': 'Bañar al perro',
+            'desc': 'alguien tiene que hacerlo',
+            'expires_at': '11-02-2025',
+        },
+        {
+            'name': 'cortar el cesped',
+            'desc': 'ha crecido demasiado',
+        },
+    ],
+    'users2tasks': [
+        {
+            'user_id': 1,
+            'task_id': 1,
+        },
+        {
+            'user_id': 1,
+            'task_id': 2,
+        },
+        {
+            'user_id': 2,
+            'task_id': 1,
+        },
+        {
+            'user_id': 2,
+            'task_id': 2,
+        },
+    ],
 }
 
 def initialize_table(target, connection, **kw):

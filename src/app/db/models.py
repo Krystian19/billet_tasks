@@ -31,6 +31,7 @@ class User2Task(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     task_id = Column(Integer, ForeignKey('tasks.id'))
 
+# make sure to assign the table seed event right before table creation
 event.listen(User.__table__, 'after_create', initialize_table)
 
 Base.metadata.create_all(engine)
