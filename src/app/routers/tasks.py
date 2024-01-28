@@ -12,12 +12,12 @@ router = APIRouter()
 def get_all_tasks(db: Session = Depends(get_db)):
     return tasks.get_all(db)
 
-@router.post("/v1/tasks", response_model=MutationResponse)
+@router.post("/v1/tasks", status_code=status.HTTP_201_CREATED, response_model=MutationResponse)
 def create_task(task: TaskFieldsSchema,  db: Session = Depends(get_db)):
     created_task = tasks.create(db, task)
     return { "success": True, "detail": "successfully created task", "payload": TaskSchema(**created_task.__dict__) }
 
-@router.put("/v1/tasks/{taskId}", response_model=MutationResponse)
+@router.put("/v1/tasks/{taskId}", status_code=status.HTTP_202_ACCEPTED, response_model=MutationResponse)
 def update_task(taskId: int, task: TaskFieldsSchema,  db: Session = Depends(get_db)):
     found_task = tasks.get_one(db=db, id=taskId)
     if found_task is None:
@@ -27,7 +27,7 @@ def update_task(taskId: int, task: TaskFieldsSchema,  db: Session = Depends(get_
     return { "success": True, "detail": "updated task successfully", "payload": TaskSchema(**updated_task.__dict__) }
 
 
-@router.put("/v1/tasks/{taskId}/assign/user/{userId}", response_model=MutationResponse)
+@router.put("/v1/tasks/{taskId}/assign/user/{userId}", status_code=status.HTTP_202_ACCEPTED, response_model=MutationResponse)
 def assign_task_2_user(taskId: int, userId: int, db: Session = Depends(get_db)):
     found_user = users.get_one(db, userId)
     if found_user is None:
@@ -48,7 +48,7 @@ def assign_task_2_user(taskId: int, userId: int, db: Session = Depends(get_db)):
     users2tasks.create(db, userId=userId, taskId=taskId)
     return res
 
-@router.put("/v1/tasks/{taskId}/unassign/user/{userId}", response_model=MutationResponse)
+@router.put("/v1/tasks/{taskId}/unassign/user/{userId}", status_code=status.HTTP_202_ACCEPTED, response_model=MutationResponse)
 def unassign_task_from_user(taskId: int, userId: int, db: Session = Depends(get_db)):
     users2tasks.destroy(db, userId=userId, taskId=taskId)
     return { "success": True, "detail": "successfully unassigned task" }

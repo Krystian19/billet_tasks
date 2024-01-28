@@ -23,6 +23,9 @@ def get_user_tasks(db: Session, id: int):
 def get_one(db: Session, id: int):
     return db.query(User).filter_by(id=id).first()
 
+def get_one_with_username(db: Session, username: str):
+    return db.query(User).filter_by(username=username).first()
+
 def destroy(db: Session, id: int):
     db.query(User).filter_by(id=id).delete()
     db.commit()

@@ -1,10 +1,10 @@
 INITIAL_DATA = { 
     'users': [
         {
-            'username': 'Jan Guzman'
+            'username': 'janguzman@gmail.com'
         },
         {
-            'username': 'Wilowayne De La Cruz'
+            'username': 'wilo@gmail.com'
         },
     ],
     'tasks': [
