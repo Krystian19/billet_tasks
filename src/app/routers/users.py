@@ -12,11 +12,11 @@ router = APIRouter()
 def get_all_users(db: Session = Depends(get_db)):
     return users.get_all(db)
 
-@router.get("/v1/user/{userId}/tasks", response_model=List[TaskSchema])
+@router.get("/v1/users/{userId}/tasks", response_model=List[TaskSchema])
 def get_user_tasks(userId: int, db: Session = Depends(get_db)):
     return users.get_user_tasks(db, userId)
 
-@router.post("/v1/user/{userId}/assign/task/{taskId}", response_model=MutationResponse)
+@router.post("/v1/users/{userId}/assign/task/{taskId}", response_model=MutationResponse)
 def assign_task_2_user(userId: int, taskId: int, db: Session = Depends(get_db)):
     found_user = users.get_one(db, userId)
     if found_user is None:
@@ -37,7 +37,7 @@ def assign_task_2_user(userId: int, taskId: int, db: Session = Depends(get_db)):
     users2tasks.create(db, userId=userId, taskId=taskId)
     return res
 
-@router.delete("/v1/user/{userId}/unassign/task/{taskId}", response_model=MutationResponse)
+@router.delete("/v1/users/{userId}/unassign/task/{taskId}", response_model=MutationResponse)
 def unassign_task_from_user(userId: int, taskId: int, db: Session = Depends(get_db)):
     users2tasks.destroy(db, userId=userId, taskId=taskId)
     return { "success": True, "detail": "successfully unassigned task" }
