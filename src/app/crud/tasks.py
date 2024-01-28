@@ -1,7 +1,10 @@
 from app.db.models import Task 
+from app.routers.schemas import TaskFieldsSchema
+from app.constants import TaskStatus
+
 from sqlalchemy.orm import Session
 
-def create(db: Session, task: Task):
+def create(db: Session, task: TaskFieldsSchema):
     db_task = Task(name=task.name, desc=task.desc, status=task.status, expires_at=task.expires_at)
     db.add(db_task)
     db.commit()
@@ -14,6 +17,19 @@ def get_all(db: Session):
 
 def get_all(db: Session):
     return db.query(Task).all()
+
+def update(db: Session, taskId: id, task: TaskFieldsSchema):
+    update_query = {
+        Task.name: task.name,
+        Task.desc: task.desc,
+        Task.status: task.status,
+        Task.expires_at: task.expires_at,
+    }
+
+    db.query(Task).filter_by(id=taskId).update(update_query)
+    db.commit()
+
+    return get_one(db, taskId)
 
 def get_all_with_ids(db: Session, ids: list[int]):
     if len(ids) == 0:
