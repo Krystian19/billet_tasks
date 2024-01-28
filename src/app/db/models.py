@@ -34,5 +34,6 @@ class User2Task(Base):
 # make sure to assign the table seed event right before table creation
 event.listen(User.__table__, 'after_create', initialize_table)
 event.listen(Task.__table__, 'after_create', initialize_table)
+event.listen(User2Task.__table__, 'after_create', initialize_table)
 
 Base.metadata.create_all(engine)
