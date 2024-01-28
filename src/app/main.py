@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
 from app.routers.users import router as users_router
-import app.db 
+from app.routers.schemas import HealthResponse
 
 app = FastAPI()
 origins = ["*"]
@@ -15,16 +15,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# @app.on_event("startup")
-# async def startup():
-#     await engine.connect()
-
-# @app.on_event("shutdown")
-# async def shutdown():
-#     await engine.disconnect()
-
-@app.get("/")
-def read_root():
-    return "web server is running" 
+@app.get("/", response_model=HealthResponse)
+async def health():
+    return HealthResponse(status="OK")
 
 app.include_router(users_router)
