@@ -29,7 +29,8 @@ def assign_task_2_user(userId: int, taskId: int, db: Session = Depends(get_db)):
     res = { "success": True, "detail": "successfully assigned task" }
     found_assignment = users2tasks.get_one(db, userId=userId, taskId=taskId)
 
-    # make sure the same task never gets assigned twice
+    # NOTE: make sure the same task never gets assigned twice, probably it's a better
+    # idea to achieve the same behavior through db constraints
     if found_assignment is None:
         return res
 

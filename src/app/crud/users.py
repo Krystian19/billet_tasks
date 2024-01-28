@@ -7,7 +7,7 @@ def create(db: Session, user: User):
     db_user = User(username=user.username)
     db.add(db_user)
     db.commit()
-    db.refresh()
+    db.refresh(db_user)
 
     return db_user
 

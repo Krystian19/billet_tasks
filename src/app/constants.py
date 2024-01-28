@@ -1,7 +1,7 @@
 from enum import Enum, auto
 
-class TaskStatus(Enum):
-    PENDING = auto()
-    IN_PROGRESS = auto()
-    CANCELLED = auto()
-    DONE = auto()
+class TaskStatus(str, Enum):
+    PENDING = "PENDING" 
+    IN_PROGRESS = "IN_PROGRESS" 
+    CANCELLED = "CANCELLED" 
+    DONE = "DONE" 

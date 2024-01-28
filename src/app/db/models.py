@@ -21,7 +21,7 @@ class Task(Base):
     name = Column(String(50), nullable=False)
     desc = Column(String(100), nullable=True)
     status = Column(pgEnum(TaskStatus), default=TaskStatus.PENDING, nullable=False)
-    expires_at = Column(Date, default=dt.utcnow, nullable=False)
+    expires_at = Column(Date, default=None, nullable=True)
     created_at = Column(DateTime, default=dt.utcnow, nullable=False)
 
 class User2Task(Base):

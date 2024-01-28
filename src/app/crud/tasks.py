@@ -5,7 +5,7 @@ def create(db: Session, task: Task):
     db_task = Task(name=task.name, desc=task.desc, status=task.status, expires_at=task.expires_at)
     db.add(db_task)
     db.commit()
-    db.refresh()
+    db.refresh(db_task)
 
     return db_task
 
