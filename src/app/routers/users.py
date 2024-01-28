@@ -41,3 +41,9 @@ def assign_task_2_user(userId: int, taskId: int, db: Session = Depends(get_db)):
 def unassign_task_from_user(userId: int, taskId: int, db: Session = Depends(get_db)):
     users2tasks.destroy(db, userId=userId, taskId=taskId)
     return { "success": True, "detail": "successfully unassigned task" }
+
+@router.delete("/v1/users/{userId}", response_model=MutationResponse)
+def delete_user(userId: int, db: Session = Depends(get_db)):
+    users.destroy(db, userId)
+    return { "success": True, "detail": "successfully deleted user" }
+
