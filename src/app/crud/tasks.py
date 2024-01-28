@@ -22,7 +22,7 @@ def get_all_with_ids(db: Session, ids: list[int]):
     return db.query(Task).filter(Task.id.in_(ids)).all()
 
 def get_one(db: Session, id: int):
-    return db.query(Task).filter_by(id=id).one()
+    return db.query(Task).filter_by(id=id).first()
 
 def destroy(db: Session, id: int):
     db.query(Task).filter_by(id=id).delete()

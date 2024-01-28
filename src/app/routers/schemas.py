@@ -1,9 +1,14 @@
+from app.constants import TaskStatus
+
 from pydantic import BaseModel, Field
 from datetime import datetime
-from app.constants import TaskStatus
 
 class HealthResponse(BaseModel):
     status: str
+
+class MutationResponse(BaseModel):
+    success: bool
+    detail: str 
 
 class UserFieldsSchema(BaseModel):
     username: str = Field(..., min_length=5, max_length=40) 

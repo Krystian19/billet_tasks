@@ -21,7 +21,7 @@ def get_user_tasks(db: Session, id: int):
     return tasks.get_all_with_ids(db, taskIds)
 
 def get_one(db: Session, id: int):
-    return db.query(User).filter_by(id=id).one()
+    return db.query(User).filter_by(id=id).first()
 
 def destroy(db: Session, id: int):
     db.query(User).filter_by(id=id).delete()
