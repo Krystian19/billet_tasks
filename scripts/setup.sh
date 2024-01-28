@@ -1,7 +1,5 @@
 #!/bin/sh
 
-tail -f /dev/null
-
 # # install dependencies
 pip install -r requirements.txt
 
