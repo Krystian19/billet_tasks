@@ -1,15 +1,9 @@
 from app.constants import TaskStatus
-from app.env import DATABASE_URL
+from app.db.connection import Base, engine
 
-from sqlalchemy import (Column, Integer, String, create_engine, DateTime, ForeignKey, Sequence)
+from sqlalchemy import (Column, Integer, String, DateTime, ForeignKey)
 from sqlalchemy.dialects.postgresql import ENUM as pgEnum
-from sqlalchemy.orm import declarative_base
 from datetime import datetime as dt
-from sqlalchemy.orm import sessionmaker
-
-engine = create_engine(DATABASE_URL, echo=True)
-Base = declarative_base()
-SessionLocal = sessionmaker(bind=engine)
 
 class User(Base):
     __tablename__ = 'users'
@@ -36,10 +30,3 @@ class User2Task(Base):
     task_id = Column(Integer, ForeignKey('tasks.id'))
 
 Base.metadata.create_all(engine)
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
