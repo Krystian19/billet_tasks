@@ -217,7 +217,7 @@ tasks first on the list.
 
 > What measures would you take to ensure operational safety ?
 
-Implementing some authentication mechanism, so that we can control who does what is a must,
+Implementing some sort of authentication mechanism, so that we can control who does what is a must,
 additionally i can see a good use case for some sort of API throttling mechanism to prevent
 abuse from external users.
 
