@@ -246,7 +246,7 @@ which in turn can be easily translated into technical problems.
 
 And by following that structured line of thought, one should be able to identify the bottleneck and
 the nature of the problem that is affecting the end user's experience, and by then, we can choose how
-to solve it logical optimization, do we need to scale services because of the sheer amount of demand ?, etc...
+to solve it (logical optimization, do we need to scale because of the sheer amount of traffic ?, etc...)
 
 > How would you manage database updates without downtime ?
 
@@ -254,7 +254,7 @@ As far as i understand, there's no such thing as "no downtime", it's more of a g
 to make it almost not noticeable.
 
 If by "updates" you mean just running code migrations (creation of tables, adding new columns, etc..), you may
-face issues if consumers are currently interacting with the tables/columns you are using.
+face issues if consumers are currently interacting with the tables/columns you are actively updating.
 
 We can deal with that issue by making sure that migrations are executed before the code that makes use of said
 migrations is deployed, thus greatly minimizing the window for potential issues.
